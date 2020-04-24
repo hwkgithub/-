@@ -3,34 +3,26 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-23 21:59:41
+ * @LastEditTime: 2020-04-24 21:25:24
  -->
 <template>
   <section class="msite">
     <!--首页头部-->
     <HeaderTop :title="address.name">
-      <router-link
-        class="header_search"
-        slot="left"
-        to="/search"
-      >
+      <router-link class="header_search"
+                   slot="left"
+                   to="/search">
         <i class="iconfont icon-sousuo"></i>
       </router-link>
-      <router-link
-        class="header_login"
-        slot="right"
-        :to="userInfo._id ? '/userinfo': '/login'"
-      >
-        <span
-          class="header_login_text"
-          v-if="!userInfo._id"
-        >
+      <router-link class="header_login"
+                   slot="right"
+                   :to="userInfo._id ? '/userinfo': '/login'">
+        <span class="header_login_text"
+              v-if="!userInfo._id">
           登录|注册
         </span>
-        <span
-          class="header_login_text"
-          v-else
-        >
+        <span class="header_login_text"
+              v-else>
           <i class="iconfont icon-person"></i>
         </span>
       </router-link>
@@ -39,22 +31,16 @@
       <div class="miste-content">
         <!--首页导航-->
         <nav class="msite_nav">
-          <div
-            class="swiper-container"
-            v-if="categorys.length"
-          >
+          <div class="swiper-container"
+               v-if="categorys.length">
             <div class="swiper-wrapper">
-              <div
-                class="swiper-slide"
-                v-for="(categorys, index) in categorysArr"
-                :key="index"
-              >
-                <a
-                  href="javascript:"
-                  class="link_to_food"
-                  v-for="(category, index) in categorys"
-                  :key="index"
-                >
+              <div class="swiper-slide"
+                   v-for="(categorys, index) in categorysArr"
+                   :key="index">
+                <a href="javascript:"
+                   class="link_to_food"
+                   v-for="(category, index) in categorys"
+                   :key="index">
                   <div class="food_container">
                     <img :src="baseImageUrl+category.image_url">
                   </div>
@@ -66,11 +52,9 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
           </div>
-          <img
-            src="./images/msite_back.svg"
-            alt="back"
-            v-else
-          >
+          <img src="./images/msite_back.svg"
+               alt="back"
+               v-else>
         </nav>
         <!--首页附近商家-->
         <div class="msite_shop_list">
@@ -94,20 +78,20 @@ import 'swiper/dist/css/swiper.min.css'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 import ShopList from '../../components/ShopList/ShopList.vue'
 
-
-
 export default {
   data() {
     return {
       baseImageUrl: 'https://fuss10.elemecdn.com'
     }
   },
-  mounted() {
 
+  //发请求异步获取后台数据
+  mounted() {
     this.$store.dispatch('getCategorys')
     this.$store.dispatch('getShops')
   },
 
+  //读取state中的数据到组件中
   computed: {
     ...mapState(['address', 'categorys', 'userInfo']),
 
@@ -157,24 +141,24 @@ export default {
         })
       }, 100)*/
 
-      // 界面更新就立即创建Swiper对象
+      //界面更新就立即创建Swiper对象
       //这里用的vue的一个实例方法 vm.$nextTick([callback])
       //将回调延迟到下次dom更新循环后执行，在修改数据之后立即使用它
-      this.$nextTick(() => {// 一旦完成界面更新, 立即调用(此条语句要写在数据更新之后)
-        //   //创建一个swiper实例对象，来实现轮播 new swiper的时候保证页面已经显示了
+      this.$nextTick(() => {
+        // 一旦完成界面更新, 立即调用(此条语句要写在数据更新之后)
+        //创建一个swiper实例对象，来实现轮播 new swiper的时候保证页面已经显示了
         new Swiper('.swiper-container', {
           loop: true, // 可以循环轮播
           // 如果需要分页器
           pagination: {
-            el: '.swiper-pagination',
-          },
+            el: '.swiper-pagination'
+          }
         })
 
         new BScroll('.miste-content-wrapper', {
           click: true
         })
       })
-
     }
   },
 
@@ -188,60 +172,60 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '../../common/stylus/mixins.styl'
 .msite // 首页
-  width: 100%
+  width 100%
   .miste-content-wrapper
-    position: fixed
-    top: 45px
-    bottom: 46px
-    width: 100%
+    position fixed
+    top 45px
+    bottom 46px
+    width 100%
     .msite_nav
       bottom-border-1px(#e4e4e4)
-      margin-top: 15px
-      height: 200px
-      background: #fff
+      margin-top 15px
+      height 200px
+      background #fff
       .swiper-container
-        width: 100%
-        height: 100%
+        width 100%
+        height 100%
         .swiper-wrapper
-          width: 100%
-          height: 100%
+          width 100%
+          height 100%
           .swiper-slide
-            display: flex
-            justify-content: center
-            align-items: flex-start
-            flex-wrap: wrap
+            display flex
+            justify-content center
+            align-items flex-start
+            flex-wrap wrap
             .link_to_food
-              width: 25%
+              width 25%
               .food_container
-                display: block
-                width: 100%
-                text-align: center
-                padding-bottom: 10px
-                font-size: 0
+                display block
+                width 100%
+                text-align center
+                padding-bottom 10px
+                font-size 0
                 img
-                  display: inline-block
-                  width: 50px
-                  height: 50px
+                  display inline-block
+                  width 50px
+                  height 50px
               span
-                display: block
-                width: 100%
-                text-align: center
-                font-size: 13px
-                color: #666
+                display block
+                width 100%
+                text-align center
+                font-size 13px
+                color #666
         .swiper-pagination
           >span.swiper-pagination-bullet-active
-            background: #02a774
+            background #02a774
     .msite_shop_list
       top-border-1px(#e4e4e4)
-      margin-top: 10px
-      background: #fff
+      margin-top 10px
+      background #fff
       .shop_header
-        padding: 10px 10px 0
+        padding 10px 10px 0
         .shop_icon
-          margin-left: 5px
-          color: #999
+          margin-left 5px
+          color #999
         .shop_header_title
-          color: #999
-          font-size: 14px
-          line-height: 20px
+          color #999
+          font-size 14px
+          line-height 20px
 </style>
