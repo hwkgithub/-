@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-23 21:47:01
+ * @LastEditTime: 2020-04-23 21:59:41
  -->
 <template>
   <section class="msite">
@@ -138,11 +138,13 @@ export default {
       return arr
     }
   },
-  
+
   //因为需要列表显示之后才能引用swiper对象 而列表显示需要数据传进来
   //所以需要监视当数据传进来制后马上创建swiper对象
   watch: {
-    categorys(value) { // categorys数组中有数据了, 在异步更新界面之前执行
+    // categorys数组中有数据了, 在异步更新界面之前执行
+    //先接收数据  在异步更新界面 是两步
+    categorys(value) {
       // 使用setTimeout可以实现效果, 但不是太好
       /*setTimeout(() => {
         // 创建一个Swiper实例对象, 来实现轮播
@@ -156,6 +158,8 @@ export default {
       }, 100)*/
 
       // 界面更新就立即创建Swiper对象
+      //这里用的vue的一个实例方法 vm.$nextTick([callback])
+      //将回调延迟到下次dom更新循环后执行，在修改数据之后立即使用它
       this.$nextTick(() => {// 一旦完成界面更新, 立即调用(此条语句要写在数据更新之后)
         //   //创建一个swiper实例对象，来实现轮播 new swiper的时候保证页面已经显示了
         new Swiper('.swiper-container', {
