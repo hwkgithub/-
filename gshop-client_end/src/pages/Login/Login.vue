@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-24 15:11:53
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-24 22:18:46
+ * @LastEditTime: 2020-04-25 21:52:23
  -->
 <template>
   <section class="loginContainer">
@@ -22,7 +22,7 @@
       </div>
       <div class="login_content">
         <!-- 异步登录 -->
-        <!-- 密码登录 -->
+        <!-- 短信登录 -->
         <form @submit.prevent="login">
           <!-- 随着loginWay的值不同切换不同的表单 -->
           <div :class="{on: loginWay}">
@@ -53,7 +53,7 @@
               <a href="javascript:;">《用户服务协议》</a>
             </section>
           </div>
-          <!-- 短信登录 -->
+          <!-- 密码登录 -->
           <div :class="{on: !loginWay}">
             <section>
               <section class="login_message">
@@ -78,7 +78,7 @@
                      @click="showPwd=!showPwd">
                   <div class="switch_circle"
                        :class="{right: showPwd}"></div>
-                  <span class="switch_text">{{showPwd ? '看得到' : '看不到'}}</span>
+                  <span class="switch_text">{{showPwd ? '显示' : '隐藏'}}</span>
                 </div>
               </section>
               <section class="login_message">
@@ -229,7 +229,7 @@ export default {
         const user = result.data
         // 将user保存到vuex的state
         this.$store.dispatch('recordUser', user)
-        // 去个人中心界面
+        // 去个人中心界面 
         this.$router.replace('/profile')
       } else {
         // 显示新的图片验证码

@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:47:24
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-24 21:09:05
+ * @LastEditTime: 2020-04-25 21:59:09
  */
 import {
   RECEIVE_ADDRESS,
@@ -43,6 +43,7 @@ export default {
     // 提交一个mutation
     if (result.code === 0) {
       const address = result.data
+      //无论数据什么类型，传的数据都要用对象包起来
       commit(RECEIVE_ADDRESS, {
         address
       })
@@ -58,6 +59,7 @@ export default {
     // 提交一个mutation
     if (result.code === 0) {
       const categorys = result.data
+      //无论数据什么类型，传的数据都要用对象包起来
       commit(RECEIVE_CATEGORYS, {
         categorys
       })
@@ -84,16 +86,24 @@ export default {
     }
   },
 
-  // 同步记录用户信息
+  //同步记录用户信息
+  //在Login.vue中登录后会保存用户名密码或者手机号到这个actions
+  //然后actions提交到对应的mutations后再更新vuex提供的state组件
+  //后台数据库会不断读取state然后更新保存用户在cookie
   recordUser({
     commit
   }, userInfo) {
+    //无论数据什么类型，传的数据都要用对象包起来
     commit(RECEIVE_USER_INFO, {
       userInfo
     })
   },
 
-  // 异步获取用户信息
+  //异步获取用户信息 
+  //当你登陆过后后台会有sessionid的cookie保存用户信息
+  //这里验证是否存在这么一个用户登陆过在后台数据库查找如果有的话就提交到登陆mutations上
+  //在页面显示的时候就查看有没有用户信息 在App.vue发送请求调用这个actions
+  //这样在登录过后刷新就不会再重置 维持登陆状态
   async getUserInfo({
     commit
   }) {

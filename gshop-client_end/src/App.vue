@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 09:47:44
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-23 21:21:47
+ * @LastEditTime: 2020-04-25 21:31:55
  -->
 <template>
   <div id="app">
@@ -18,13 +18,13 @@ import { mapActions } from 'vuex'
 import FooterGuide from './components/FooterGuide/FooterGuide.vue'
 
 export default {
-
   mounted() {
     // this.$store.dispatch('getAddress')
     this.getAddress()
     this.getUserInfo()
   },
-
+  
+  //读取actions要用方法
   methods: {
     ...mapActions(['getAddress', 'getUserInfo'])
   },
@@ -37,7 +37,7 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
 .app
-  width: 100%
-  height: 100%
-  background: #f5f5f5
+  width 100%
+  height 100%
+  background #f5f5f5
 </style>

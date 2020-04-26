@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:47:33
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-24 21:09:15
+ * @LastEditTime: 2020-04-25 19:54:16
  */
 import Vue from 'vue'
 import {
@@ -22,51 +22,54 @@ import {
 } from './mutation-types'
 
 export default {
+  //因为mutations里面是小写的所以如果直接写会不匹配
+  //要把从字符串变成一个变量，加一个中括号
+  // 接收地址
   [RECEIVE_ADDRESS](state, {
     address
   }) {
     state.address = address
   },
-
+  // 接收食品分类数组
   [RECEIVE_CATEGORYS](state, {
     categorys
   }) {
     state.categorys = categorys
   },
-
+  // 接收商家数组
   [RECEIVE_SHOPS](state, {
     shops
   }) {
     state.shops = shops
   },
-
+  // 接收用户信息
   [RECEIVE_USER_INFO](state, {
     userInfo
   }) {
     state.userInfo = userInfo
   },
+  // 重置用户信息
   [RESET_USER_INFO](state) {
     state.userInfo = {}
   },
-
   [RECEIVE_INFO](state, {
     info
   }) {
     state.info = info
   },
-
+  // 接收商家评价数组
   [RECEIVE_RATINGS](state, {
     ratings
   }) {
     state.ratings = ratings
   },
-
+  // 接收商品数组
   [RECEIVE_GOODS](state, {
     goods
   }) {
     state.goods = goods
   },
-
+  // 增加food中的count
   [INCREMENT_FOOD_COUNT](state, {
     food
   }) {
@@ -84,6 +87,7 @@ export default {
       food.count++
     }
   },
+  // 减少food中的count
   [DECREMENT_FOOD_COUNT](state, {
     food
   }) {
@@ -95,7 +99,7 @@ export default {
       }
     }
   },
-
+  // 清空购物车
   [CLEAR_CART](state) {
 
     // 清除food中的count
@@ -103,7 +107,7 @@ export default {
     // 移除购物车中所有购物项
     state.cartFoods = []
   },
-
+  // 接收搜索的商家数组
   [RECEIVE_SEARCH_SHOPS](state, {
     searchShops
   }) {

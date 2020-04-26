@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-24 21:25:24
+ * @LastEditTime: 2020-04-25 21:31:46
  -->
 <template>
   <section class="msite">
@@ -71,7 +71,7 @@
 
 <script>
 import BScroll from 'better-scroll'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 
@@ -87,11 +87,17 @@ export default {
 
   //发请求异步获取后台数据
   mounted() {
-    this.$store.dispatch('getCategorys')
-    this.$store.dispatch('getShops')
+    // this.$store.dispatch('getCategorys')
+    // this.$store.dispatch('getShops')
+    this.getCategorys()
+    this.getShops()
+  },
+  //读取actions要用方法
+  methods: {
+    ...mapActions(['getShops', 'getCategorys'])
   },
 
-  //读取state中的数据到组件中
+  //读取state中的数据到组件中 读state要用计算属性
   computed: {
     ...mapState(['address', 'categorys', 'userInfo']),
 
