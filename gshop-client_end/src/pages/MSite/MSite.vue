@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-25 21:31:46
+ * @LastEditTime: 2020-04-26 15:16:16
  -->
 <template>
   <section class="msite">
@@ -92,6 +92,7 @@ export default {
     this.getCategorys()
     this.getShops()
   },
+  
   //读取actions要用方法
   methods: {
     ...mapActions(['getShops', 'getCategorys'])

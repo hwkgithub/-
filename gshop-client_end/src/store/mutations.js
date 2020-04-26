@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:47:33
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-25 19:54:16
+ * @LastEditTime: 2020-04-26 15:03:48
  */
 import Vue from 'vue'
 import {
@@ -30,24 +30,28 @@ export default {
   }) {
     state.address = address
   },
+
   // 接收食品分类数组
   [RECEIVE_CATEGORYS](state, {
     categorys
   }) {
     state.categorys = categorys
   },
+
   // 接收商家数组
   [RECEIVE_SHOPS](state, {
     shops
   }) {
     state.shops = shops
   },
+
   // 接收用户信息
   [RECEIVE_USER_INFO](state, {
     userInfo
   }) {
     state.userInfo = userInfo
   },
+
   // 重置用户信息
   [RESET_USER_INFO](state) {
     state.userInfo = {}
@@ -57,18 +61,21 @@ export default {
   }) {
     state.info = info
   },
+
   // 接收商家评价数组
   [RECEIVE_RATINGS](state, {
     ratings
   }) {
     state.ratings = ratings
   },
+
   // 接收商品数组
   [RECEIVE_GOODS](state, {
     goods
   }) {
     state.goods = goods
   },
+
   // 增加food中的count
   [INCREMENT_FOOD_COUNT](state, {
     food
@@ -87,6 +94,7 @@ export default {
       food.count++
     }
   },
+  
   // 减少food中的count
   [DECREMENT_FOOD_COUNT](state, {
     food
@@ -99,6 +107,7 @@ export default {
       }
     }
   },
+
   // 清空购物车
   [CLEAR_CART](state) {
 
@@ -107,6 +116,7 @@ export default {
     // 移除购物车中所有购物项
     state.cartFoods = []
   },
+  
   // 接收搜索的商家数组
   [RECEIVE_SEARCH_SHOPS](state, {
     searchShops

@@ -1,9 +1,9 @@
 <!--
- * @Description: 商家信息列表
+ * @Description: 所有商家信息列表
  * @Autor: HWK
  * @Date: 2020-04-21 21:36:15
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-24 14:39:08
+ * @LastEditTime: 2020-04-26 09:48:01
  -->
 <template>
   <div class="shop_container">

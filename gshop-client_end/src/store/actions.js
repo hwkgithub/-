@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:47:24
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-25 21:59:09
+ * @LastEditTime: 2020-04-26 15:03:20
  */
 import {
   RECEIVE_ADDRESS,
@@ -139,7 +139,7 @@ export default {
     }
   },
 
-  // 异步获取商家评价列表
+  // 异步获取商家评价列表 
   async getShopRatings({
     commit
   }, callback) {
