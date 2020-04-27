@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:47:24
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-26 15:03:20
+ * @LastEditTime: 2020-04-27 23:26:52
  */
 import {
   RECEIVE_ADDRESS,
@@ -155,6 +155,7 @@ export default {
   },
 
   // 异步获取商家商品列表
+  //这里面传个回调函数是为了在页面更新之后触发滚动
   async getShopGoods({
     commit
   }, callback) {

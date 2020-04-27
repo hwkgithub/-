@@ -1,9 +1,21 @@
+<!--
+ * @Description: 商家页面 --- 点餐
+ * @Autor: HWK
+ * @Date: 2020-04-21 11:18:00
+ * @LastEditors: HWK
+ * @LastEditTime: 2020-04-27 23:26:10
+ -->
 <template>
   <div>
     <div class="goods">
+      <!-- 左边 -->
       <div class="menu-wrapper">
         <ul>
-          <!--current-->
+          <!--
+              当有current类名的时候就是选中状态 标识当前分类
+              currentIndex计算得到当前分类的下标 对应index
+              这样就能知道点击左边的时候哪个能应用类名current
+          -->
           <li class="menu-item"
               v-for="(good, index) in goods"
               :key="index"
@@ -18,12 +30,16 @@
           </li>
         </ul>
       </div>
+
+      <!-- 右边 -->
       <div class="foods-wrapper">
+        <!-- 右边顶部 -->
         <ul ref="foodsUl">
           <li class="food-list-hook"
               v-for="(good, index) in goods"
               :key="index">
             <h1 class="title">{{good.name}}</h1>
+            <!-- 右边内容 -->
             <ul>
               <li class="food-item bottom-border-1px"
                   v-for="(food, index) in good.foods"
@@ -73,9 +89,9 @@ import ShopCart from '../../../components/ShopCart/ShopCart.vue'
 export default {
   data() {
     return {
-      scrollY: 0, // 右侧滑动的Y轴坐标 (滑动过程时实时变化)
-      tops: [], // 所有右侧分类li的top组成的数组  (列表第一次显示后就不再变化)
-      food: {} // 需要显示的food
+      scrollY: 0, //右侧滑动的Y轴坐标(滑动过程时实时变化)
+      tops: [], //所有右侧分类li的top组成的数组(列表第一次显示之后就不再变化)
+      food: {} //需要显示的food
     }
   },
   mounted() {
@@ -83,7 +99,6 @@ export default {
       // 数据更新后执行
       this.$nextTick(() => {
         // 列表数据更新显示后执行
-
         this._initScroll()
         this._initTops()
       })
@@ -94,8 +109,8 @@ export default {
 
     // 计算得到当前分类的下标
     currentIndex() {
-      // 初始和相关数据发生了变化
-      // 得到条件数据
+      //初始和相关数据发生了变化
+      //得到条件数据
       const { scrollY, tops } = this
       // 根据条件计算产生一个结果
       const index = tops.findIndex((top, index) => {
