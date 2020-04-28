@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-27 23:26:10
+ * @LastEditTime: 2020-04-28 23:18:27
  -->
 <template>
   <div>
@@ -97,6 +97,8 @@ export default {
   mounted() {
     this.$store.dispatch('getShopGoods', () => {
       // 数据更新后执行
+      //nextTick()，是将回调函数延迟在下一次dom更新数据后调用，
+      //简单的理解是：当数据更新了，在dom中渲染后，自动执行该函数
       this.$nextTick(() => {
         // 列表数据更新显示后执行
         this._initScroll()
@@ -104,6 +106,7 @@ export default {
       })
     })
   },
+
   computed: {
     ...mapState(['goods']),
 
@@ -112,7 +115,7 @@ export default {
       //初始和相关数据发生了变化
       //得到条件数据
       const { scrollY, tops } = this
-      // 根据条件计算产生一个结果
+      //把每个和左边对应标题的top值对应的下标计算出来
       const index = tops.findIndex((top, index) => {
         // scrollY>=当前top && scrollY<下一个top
         return scrollY >= top && scrollY < tops[index + 1]
@@ -137,14 +140,17 @@ export default {
       // 给右侧列表绑定scroll监听
       this.foodsScroll.on('scroll', ({ x, y }) => {
         console.log(x, y)
+        //函数返回指定数字的绝对值
         this.scrollY = Math.abs(y)
       })
       // 给右侧列表绑定scroll结束的监听
       this.foodsScroll.on('scrollEnd', ({ x, y }) => {
         console.log('scrollEnd', x, y)
+        //函数返回指定数字的绝对值
         this.scrollY = Math.abs(y)
       })
     },
+
     // 初始化tops
     _initTops() {
       // 1. 初始化tops
@@ -154,11 +160,12 @@ export default {
       // 2. 收集
       // 找到所有分类的li
       const lis = this.$refs.foodsUl.getElementsByClassName('food-list-hook')
+      //将有length属性的对象转换为数组(特别注意： 这个对象一定要有length属性)
       Array.prototype.slice.call(lis).forEach(li => {
+        //元素内部的高度clientHeight 包含内边距，但不包括水平滚动条、边框和外边距
         top += li.clientHeight
         tops.push(top)
       })
-
       // 3. 更新数据
       this.tops = tops
       console.log(tops)
