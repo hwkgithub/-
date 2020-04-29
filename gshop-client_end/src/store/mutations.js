@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:47:33
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-26 15:03:48
+ * @LastEditTime: 2020-04-29 22:14:08
  */
 import Vue from 'vue'
 import {
@@ -87,14 +87,15 @@ export default {
       属性名
       属性值
        */
-      Vue.set(food, 'count', 1) // 让新增的属性也有数据绑定
+      // 让新增的属性也有数据绑定 因为food里面并没有count属性是新加的
+      Vue.set(food, 'count', 1)
       // 将food添加到cartFoods中
       state.cartFoods.push(food)
     } else {
       food.count++
     }
   },
-  
+
   // 减少food中的count
   [DECREMENT_FOOD_COUNT](state, {
     food
@@ -116,7 +117,7 @@ export default {
     // 移除购物车中所有购物项
     state.cartFoods = []
   },
-  
+
   // 接收搜索的商家数组
   [RECEIVE_SEARCH_SHOPS](state, {
     searchShops

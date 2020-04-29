@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-28 23:18:27
+ * @LastEditTime: 2020-04-29 21:58:54
  -->
 <template>
   <div>
@@ -73,6 +73,7 @@
       </div>
       <ShopCart />
     </div>
+    <!-- food遮幕层 -->
     <Food :food="food"
           ref="food" />
   </div>
@@ -91,9 +92,10 @@ export default {
     return {
       scrollY: 0, //右侧滑动的Y轴坐标(滑动过程时实时变化)
       tops: [], //所有右侧分类li的top组成的数组(列表第一次显示之后就不再变化)
-      food: {} //需要显示的food
+      food: {} //需要显示的food 因为点击显示food开始是不确定没有值的且是变化的
     }
   },
+
   mounted() {
     this.$store.dispatch('getShopGoods', () => {
       // 数据更新后执行
@@ -171,10 +173,9 @@ export default {
       console.log(tops)
     },
 
+    // 使用右侧列表滑动到对应的位置
     clickMenuItem(index) {
       // console.log(index)
-      // 使用右侧列表滑动到对应的位置
-
       // 得到目标位置的scrollY
       const scrollY = this.tops[index]
       // 立即更新scrollY(让点击的分类项成为当前分类)
@@ -183,7 +184,7 @@ export default {
       this.foodsScroll.scrollTo(0, -scrollY, 300)
     },
 
-    // 显示点击的food
+    // 显示点击的food 遮幕层
     showFood(food) {
       // 设置food
       this.food = food

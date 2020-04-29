@@ -3,20 +3,21 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:48:18
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-22 22:49:40
+ * @LastEditTime: 2020-04-29 22:28:03
  */
 
 export default {
 
-  totalCount (state) {
-    return state.cartFoods.reduce((preTotal, food) => preTotal + food.count , 0)
+  totalCount(state) {
+    //reduce()方法 计算数组元素相加后的总和
+    return state.cartFoods.reduce((preTotal, food) => preTotal + food.count, 0)
   },
 
-  totalPrice (state) {
-    return state.cartFoods.reduce((preTotal, food) => preTotal + food.count*food.price , 0)
+  totalPrice(state) {
+    return state.cartFoods.reduce((preTotal, food) => preTotal + food.count * food.price, 0)
   },
 
-  positiveSize (state) {
-    return state.ratings.reduce((preTotal, rating) => preTotal + (rating.rateType===0?1:0) , 0)
+  positiveSize(state) {
+    return state.ratings.reduce((preTotal, rating) => preTotal + (rating.rateType === 0 ? 1 : 0), 0)
   }
 }
