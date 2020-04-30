@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-22 22:47:33
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-29 22:14:08
+ * @LastEditTime: 2020-04-30 22:46:17
  */
 import Vue from 'vue'
 import {
@@ -111,7 +111,6 @@ export default {
 
   // 清空购物车
   [CLEAR_CART](state) {
-
     // 清除food中的count
     state.cartFoods.forEach(food => food.count = 0)
     // 移除购物车中所有购物项

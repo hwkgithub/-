@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-29 23:01:16
+ * @LastEditTime: 2020-04-30 22:21:04
  -->
 <template>
   <div>
@@ -33,6 +33,7 @@
         </div>
       </div>
       <transition name="move">
+        <!-- listShow除了点击之后消失还要看总数量 -->
         <div class="shopcart-list"
              v-show="listShow">
           <div class="list-header">
@@ -80,12 +81,16 @@ export default {
     ...mapState(['cartFoods', 'info']),
     //totalCount:总数量  totalPrice:总价格
     ...mapGetters(['totalCount', 'totalPrice']),
+
+    //样式
     payClass() {
       const { totalPrice } = this
       const { minPrice } = this.info
       //有两个样式变化 一个是enough 一个not-enough
       return totalPrice >= minPrice ? 'enough' : 'not-enough'
     },
+
+    //文本
     payText() {
       const { totalPrice } = this
       const { minPrice } = this.info
@@ -98,6 +103,7 @@ export default {
       }
     },
 
+    //计算显示购物车数量内容
     listShow() {
       // 如果总数量为0, 直接不显示
       if (this.totalCount === 0) {
@@ -107,13 +113,16 @@ export default {
 
       if (this.isShow) {
         this.$nextTick(() => {
-          // 实现BScroll的实例是一个单例
+          // 实现BScroll的实例是一个单例(只有一个实例)
+          //这里验证有没有this.scroll这个实例如果不存在就创建并保存
           if (!this.scroll) {
             this.scroll = new BScroll('.list-content', {
               click: true
             })
           } else {
-            this.scroll.refresh() // 让滚动条刷新一下: 重新统计内容的高度
+            //让滚动条刷新一下: 重新统计内容的高度
+            //为了让滚动条一创建打开就可以滑动
+            this.scroll.refresh()
           }
         })
       }
@@ -124,12 +133,13 @@ export default {
 
   methods: {
     toggleShow() {
-      // 只有当总数量大于0时切换
+      // 只有当总数量大于0时isShow才做切换
       if (this.totalCount > 0) {
         this.isShow = !this.isShow
       }
     },
 
+    //清空购物车
     clearCart() {
       MessageBox.confirm('确定清空购物车吗?').then(
         action => {
