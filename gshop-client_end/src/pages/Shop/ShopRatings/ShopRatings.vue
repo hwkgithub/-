@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-05-01 15:58:12
+ * @LastEditTime: 2020-05-01 16:30:14
  -->
 <template>
   <!-- 星星评分 -->
@@ -132,6 +132,7 @@ export default {
 
       // 产生一个过滤新数组
       return ratings.filter(rating => {
+        //rateType是赞或者差评图标 有0/1两个值
         const { rateType, text } = rating
         /*
             条件1:
@@ -144,7 +145,9 @@ export default {
                 !onlyShowText || text.length>0
            */
         return (
+          // selectType===2显示全部或者selectType=rateType显示满意的或者是差评
           (selectType === 2 || selectType === rateType) &&
+          //!onlyShowText全部显示或者text.length > 0显示有文本的
           (!onlyShowText || text.length > 0)
         )
       })
