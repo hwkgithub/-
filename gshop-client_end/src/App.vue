@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 09:47:44
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-25 21:31:55
+ * @LastEditTime: 2020-05-01 15:28:27
  -->
 <template>
   <div id="app">
@@ -23,7 +23,7 @@ export default {
     this.getAddress()
     this.getUserInfo()
   },
-  
+
   //读取actions要用方法
   methods: {
     ...mapActions(['getAddress', 'getUserInfo'])

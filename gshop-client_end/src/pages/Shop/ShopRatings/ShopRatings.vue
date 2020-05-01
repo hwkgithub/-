@@ -3,9 +3,10 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-30 23:20:04
+ * @LastEditTime: 2020-05-01 15:58:12
  -->
 <template>
+  <!-- 星星评分 -->
   <div class="ratings"
        ref="ratings">
     <div class="ratings-content">
@@ -36,7 +37,7 @@
       </div>
 
       <div class="split"></div>
-
+      <!-- 客户评论选择 -->
       <div class="ratingselect">
         <div class="rating-type border-1px">
           <span class="block positive"
@@ -62,7 +63,7 @@
           <span class="text">只看有内容的评价</span>
         </div>
       </div>
-
+      <!-- 客户评论内容 -->
       <div class="rating-wrapper">
         <ul>
           <li class="rating-item"
@@ -124,6 +125,7 @@ export default {
     ...mapState(['info', 'ratings']),
     ...mapGetters(['positiveSize']),
 
+    //过滤显示  分出满意或者是差评的评论 以及全部里面只看有内容的评论
     filterRatings() {
       // 得到相关的数据
       const { ratings, onlyShowText, selectType } = this
@@ -150,9 +152,12 @@ export default {
   },
 
   methods: {
+    //选择评价类型
     setSelectType(selectType) {
       this.selectType = selectType
     },
+
+    //选择是否只显示有文本的
     toggleOnlyShowText() {
       this.onlyShowText = !this.onlyShowText
     }
