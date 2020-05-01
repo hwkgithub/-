@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:18:00
  * @LastEditors: HWK
- * @LastEditTime: 2020-05-01 16:33:42
+ * @LastEditTime: 2020-05-01 21:12:41
  -->
 <template>
   <div class="shop-info">
@@ -89,7 +89,7 @@ export default {
     }
 
     // 数据有了, 可以创建BScroll对象形成滑动
-    this._initScroll()
+    // this._initScroll()
   },
 
   methods: {

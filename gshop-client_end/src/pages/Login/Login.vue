@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-24 15:11:53
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-25 21:52:23
+ * @LastEditTime: 2020-05-01 21:24:43
  -->
 <template>
   <section class="loginContainer">
@@ -229,7 +229,7 @@ export default {
         const user = result.data
         // 将user保存到vuex的state
         this.$store.dispatch('recordUser', user)
-        // 去个人中心界面 
+        // 去个人中心界面
         this.$router.replace('/profile')
       } else {
         // 显示新的图片验证码
