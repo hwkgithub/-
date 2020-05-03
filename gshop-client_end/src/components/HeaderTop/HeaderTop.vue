@@ -3,10 +3,11 @@
  * @Autor: HWK
  * @Date: 2020-04-21 20:45:27
  * @LastEditors: HWK
- * @LastEditTime: 2020-05-03 18:25:06
+ * @LastEditTime: 2020-05-03 18:39:25
  -->
 <template>
   <header class="header">
+    <!-- slot时候 样式写在父组件，子组件引用的时候直接class引用就可以 -->
     <slot name="left"></slot>
     <span class="header_title">
       <span class="header_title_text ellipsis">{{title}}</span>
