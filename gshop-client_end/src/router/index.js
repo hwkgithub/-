@@ -3,7 +3,7 @@
  * @Autor: HWK
  * @Date: 2020-04-21 11:32:23
  * @LastEditors: HWK
- * @LastEditTime: 2020-04-23 21:20:45
+ * @LastEditTime: 2020-05-03 15:45:18
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -14,6 +14,7 @@ import VueRouter from 'vue-router'
 // import Order from '../pages/Order/Order.vue'
 // import Profile from '../pages/Profile/Profile.vue'
 
+//路由懒加载 需要哪个组件的时候才去加载哪个模块
 const MSite = () => import('../pages/MSite/MSite.vue')
 const Search = () => import('../pages/Search/Search.vue')
 const Order = () => import('../pages/Order/Order.vue')
@@ -30,8 +31,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
   // 所有路由
-  routes: [
-    {
+  routes: [{
       path: '/msite',
       component: MSite, // 返回路由组件的函数, 只有执行此函数才会加载路由组件, 这个函数在请求对应的路由路径时才会执行
       //meta属性可以控制是否显示 这样只有在这四个路由里面才会显示底部通栏
@@ -72,8 +72,7 @@ export default new VueRouter({
     {
       path: '/shop',
       component: Shop,
-      children: [
-        {
+      children: [{
           path: '/shop/goods',
           component: ShopGoods
         },
