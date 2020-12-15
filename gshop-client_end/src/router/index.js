@@ -61,6 +61,7 @@ export default new VueRouter({
         showFooter: true
       }
     },
+    //默认显示msite页面
     {
       path: '/',
       redirect: '/msite'
